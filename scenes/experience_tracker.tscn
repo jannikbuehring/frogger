@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c1icqia4e5e28"]
 
-[ext_resource type="Script" path="res://experience_tracker.gd" id="1_2mp6e"]
+[ext_resource type="Script" path="res://scripts/experience_tracker.gd" id="1_2mp6e"]
 
 [node name="Experience Tracker" type="Node2D"]
 script = ExtResource("1_2mp6e")

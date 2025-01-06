@@ -1,10 +1,10 @@
 [gd_scene load_steps=13 format=3 uid="uid://bhoqkg480q3c4"]
 
-[ext_resource type="Script" path="res://player.gd" id="1_ihjwu"]
-[ext_resource type="Texture2D" uid="uid://8bk8h5ruc511" path="res://PlayerSprite2.png" id="2_ednby"]
-[ext_resource type="PackedScene" uid="uid://dtfjg1rqx4leb" path="res://weapon.tscn" id="2_rw3io"]
-[ext_resource type="PackedScene" uid="uid://jxxp7jx1qs2x" path="res://hurt_box.tscn" id="3_2eg8m"]
-[ext_resource type="PackedScene" uid="uid://d3or55y1uesbo" path="res://level_up_animation.tscn" id="5_xn4df"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_ihjwu"]
+[ext_resource type="Texture2D" uid="uid://8bk8h5ruc511" path="res://sprites/PlayerSprite2.png" id="2_ednby"]
+[ext_resource type="PackedScene" uid="uid://dtfjg1rqx4leb" path="res://scenes/weapon.tscn" id="2_rw3io"]
+[ext_resource type="PackedScene" uid="uid://jxxp7jx1qs2x" path="res://scenes/hurt_box.tscn" id="3_2eg8m"]
+[ext_resource type="PackedScene" uid="uid://d3or55y1uesbo" path="res://scenes/level_up_animation.tscn" id="5_xn4df"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u8jgr"]
 atlas = ExtResource("2_ednby")

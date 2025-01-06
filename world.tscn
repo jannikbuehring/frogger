@@ -1,11 +1,11 @@
 [gd_scene load_steps=11 format=3 uid="uid://wcod0u8w7cxx"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_t7m1s"]
-[ext_resource type="PackedScene" uid="uid://bhoqkg480q3c4" path="res://player.tscn" id="2_dv1y6"]
-[ext_resource type="PackedScene" uid="uid://dxu8u3gspkvf4" path="res://enemy_spawner.tscn" id="3_ma5a6"]
-[ext_resource type="PackedScene" uid="uid://c4rk10xv7hp2v" path="res://pause_screen.tscn" id="4_0qc0d"]
-[ext_resource type="PackedScene" uid="uid://clqqvvanscjnd" path="res://game_over_screen.tscn" id="4_pvpia"]
-[ext_resource type="PackedScene" uid="uid://c1icqia4e5e28" path="res://experience_tracker.tscn" id="4_weduq"]
+[ext_resource type="PackedScene" uid="uid://bhoqkg480q3c4" path="res://scenes/player.tscn" id="2_dv1y6"]
+[ext_resource type="PackedScene" uid="uid://dxu8u3gspkvf4" path="res://scenes/enemy_spawner.tscn" id="3_ma5a6"]
+[ext_resource type="PackedScene" uid="uid://c4rk10xv7hp2v" path="res://scenes/pause_screen.tscn" id="4_0qc0d"]
+[ext_resource type="PackedScene" uid="uid://clqqvvanscjnd" path="res://scenes/game_over_screen.tscn" id="4_pvpia"]
+[ext_resource type="PackedScene" uid="uid://c1icqia4e5e28" path="res://scenes/experience_tracker.tscn" id="4_weduq"]
 
 [sub_resource type="Curve" id="Curve_wyohd"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0]

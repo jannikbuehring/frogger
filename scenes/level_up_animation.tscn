@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://d3or55y1uesbo"]
 
-[ext_resource type="Script" path="res://label.gd" id="1_ai74m"]
+[ext_resource type="Script" path="res://scripts/label.gd" id="1_2d7em"]
 
 [sub_resource type="Curve" id="Curve_oxt3h"]
 _data = [Vector2(0.511236, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.197802), 0.0, 0.0, 0, 0]
@@ -39,7 +39,7 @@ offset_right = 35.0
 offset_bottom = -96.0
 text = "Level up!"
 horizontal_alignment = 1
-script = ExtResource("1_ai74m")
+script = ExtResource("1_2d7em")
 
 [node name="Level Up Text Timer" type="Timer" parent="."]
 wait_time = 1.642

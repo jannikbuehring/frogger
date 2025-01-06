@@ -1,6 +1,6 @@
 extends Node2D
 
-var enemy_scene = preload("res://enemy.tscn")
+var enemy_scene = preload("res://scenes/enemy.tscn")
 
 @warning_ignore("unused_signal")
 signal enemy_killed

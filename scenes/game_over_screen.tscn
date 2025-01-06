@@ -1,9 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://c4rk10xv7hp2v"]
+[gd_scene load_steps=2 format=3 uid="uid://clqqvvanscjnd"]
 
-[ext_resource type="Script" path="res://pause_screen.gd" id="1_yt8j3"]
+[ext_resource type="Script" path="res://scripts/game_over_screen.gd" id="1_lwibb"]
 
-[node name="Pause Screen" type="CanvasLayer"]
-script = ExtResource("1_yt8j3")
+[node name="Game Over Screen" type="CanvasLayer"]
+script = ExtResource("1_lwibb")
 
 [node name="Label" type="Label" parent="."]
 anchors_preset = 8
@@ -20,11 +20,11 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 theme_override_font_sizes/font_size = 44
-text = "Paused"
+text = "Game Over"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Resume" type="Button" parent="."]
+[node name="Restart" type="Button" parent="."]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -37,21 +37,6 @@ offset_bottom = -276.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 30
-text = "Resume"
-
-[node name="Restart" type="Button" parent="."]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -56.5
-offset_top = -263.0
-offset_right = 56.5
-offset_bottom = -213.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_font_sizes/font_size = 30
 text = "Restart"
 
 [node name="Quit" type="Button" parent="."]
@@ -61,14 +46,15 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -35.5
-offset_top = -197.0
+offset_top = -261.0
 offset_right = 35.5
-offset_bottom = -147.0
+offset_bottom = -211.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 30
 text = "Quit"
 
-[connection signal="pressed" from="Resume" to="." method="_on_resume_pressed"]
+[connection signal="button_down" from="Restart" to="Restart" method="_on_button_down"]
 [connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]
+[connection signal="button_down" from="Quit" to="Quit" method="_on_button_down"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

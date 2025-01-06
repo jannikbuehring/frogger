@@ -1,7 +1,7 @@
 class_name Missle
 extends CharacterBody2D
 
-const missle_scene = preload("res://missle.tscn")
+const missle_scene = preload("res://scenes/missle.tscn")
 
 var damage: int
 var missle_speed: int

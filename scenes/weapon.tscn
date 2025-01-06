@@ -1,17 +1,17 @@
 [gd_scene load_steps=3 format=3 uid="uid://dtfjg1rqx4leb"]
 
-[ext_resource type="Script" path="res://weapon.gd" id="1_bwc3u"]
-[ext_resource type="Texture2D" uid="uid://o7tgqrisaswr" path="res://icon.svg" id="2_1nwp2"]
+[ext_resource type="Script" path="res://scripts/weapon.gd" id="1_hmnve"]
+[ext_resource type="Texture2D" uid="uid://o7tgqrisaswr" path="res://icon.svg" id="2_k5lr1"]
 
 [node name="Weapon" type="Node2D"]
-script = ExtResource("1_bwc3u")
+script = ExtResource("1_hmnve")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
 modulate = Color(0.973518, 0.624091, 0.687959, 1)
 position = Vector2(-7.7486e-06, 0)
 scale = Vector2(0.148438, 0.109375)
-texture = ExtResource("2_1nwp2")
+texture = ExtResource("2_k5lr1")
 
 [node name="WeaponCooldown" type="Timer" parent="."]
 autostart = true

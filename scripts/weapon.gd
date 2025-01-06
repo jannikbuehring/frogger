@@ -5,7 +5,7 @@ extends Node2D
 @export var range = 500
 @export var missle_amount = 1
 
-var missle_scene = preload("res://missle.tscn")
+var missle_scene = preload("res://scenes/missle.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
