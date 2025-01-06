@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cpi8y4egrksmj"]
+
+[node name="Rain Animation" type="Node2D"]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(0, -80)
+amount = 200
+emission_shape = 3
+emission_rect_extents = Vector2(120, 1)
+gravity = Vector2(-200, 980)
+color = Color(0.0649567, 0.287861, 0.503906, 1)

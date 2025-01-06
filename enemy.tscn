@@ -1,0 +1,96 @@
+[gd_scene load_steps=14 format=3 uid="uid://c54vi827vij8"]
+
+[ext_resource type="Script" path="res://enemy.gd" id="1_onpve"]
+[ext_resource type="Texture2D" uid="uid://o7tgqrisaswr" path="res://icon.svg" id="1_qa67d"]
+[ext_resource type="Texture2D" uid="uid://8bk8h5ruc511" path="res://PlayerSprite2.png" id="2_7bjr8"]
+[ext_resource type="PackedScene" uid="uid://jxxp7jx1qs2x" path="res://hurt_box.tscn" id="3_jsuq4"]
+[ext_resource type="PackedScene" uid="uid://ne8nfi6ec2yk" path="res://hit_box.tscn" id="4_of1mw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qqd2v"]
+atlas = ExtResource("2_7bjr8")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kag35"]
+atlas = ExtResource("2_7bjr8")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4l8xp"]
+atlas = ExtResource("2_7bjr8")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p755o"]
+atlas = ExtResource("2_7bjr8")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2khm4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qqd2v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kag35")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4l8xp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p755o")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_82vn1"]
+size = Vector2(66, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x6wvg"]
+size = Vector2(69, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gpkm4"]
+size = Vector2(60, 56)
+
+[node name="Enemy" type="CharacterBody2D" groups=["Enemy"]]
+motion_mode = 1
+script = ExtResource("1_onpve")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.949219, 0.177979, 0.177979, 1)
+sprite_frames = SubResource("SpriteFrames_2khm4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_82vn1")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.539063, 0.5)
+texture = ExtResource("1_qa67d")
+flip_v = true
+
+[node name="HurtBox" parent="." instance=ExtResource("3_jsuq4")]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+shape = SubResource("RectangleShape2D_x6wvg")
+
+[node name="DisableTimer" parent="HurtBox" index="1"]
+wait_time = 0.5
+
+[node name="HitBox" parent="." instance=ExtResource("4_of1mw")]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+shape = SubResource("RectangleShape2D_gpkm4")
+
+[node name="DisableHitboxTimer" parent="HitBox" index="1"]
+wait_time = 0.504
+
+[connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
+
+[editable path="HurtBox"]
+[editable path="HitBox"]

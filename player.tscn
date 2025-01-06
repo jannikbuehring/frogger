@@ -1,0 +1,84 @@
+[gd_scene load_steps=13 format=3 uid="uid://bhoqkg480q3c4"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_ihjwu"]
+[ext_resource type="Texture2D" uid="uid://8bk8h5ruc511" path="res://PlayerSprite2.png" id="2_ednby"]
+[ext_resource type="PackedScene" uid="uid://dtfjg1rqx4leb" path="res://weapon.tscn" id="2_rw3io"]
+[ext_resource type="PackedScene" uid="uid://jxxp7jx1qs2x" path="res://hurt_box.tscn" id="3_2eg8m"]
+[ext_resource type="PackedScene" uid="uid://d3or55y1uesbo" path="res://level_up_animation.tscn" id="5_xn4df"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u8jgr"]
+atlas = ExtResource("2_ednby")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hw4tb"]
+atlas = ExtResource("2_ednby")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xqvgv"]
+atlas = ExtResource("2_ednby")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c2p7h"]
+atlas = ExtResource("2_ednby")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w8u6f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u8jgr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hw4tb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xqvgv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c2p7h")
+}],
+"loop": true,
+"name": &"move",
+"speed": 7.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5dvh2"]
+size = Vector2(42, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_limqw"]
+size = Vector2(48, 37)
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+script = ExtResource("1_ihjwu")
+
+[node name="Level Up Animation" parent="." instance=ExtResource("5_xn4df")]
+
+[node name="Level Up Text Timer" parent="Level Up Animation" index="2"]
+one_shot = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_w8u6f")
+animation = &"move"
+
+[node name="Weapon" parent="." instance=ExtResource("2_rw3io")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 8)
+shape = SubResource("RectangleShape2D_5dvh2")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+
+[node name="HurtBox" parent="." instance=ExtResource("3_2eg8m")]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2(1, 8.5)
+shape = SubResource("RectangleShape2D_limqw")
+
+[connection signal="timeout" from="Level Up Animation/Level Up Text Timer" to="." method="_on_level_up_text_timer_timeout"]
+[connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
+
+[editable path="Level Up Animation"]
+[editable path="HurtBox"]

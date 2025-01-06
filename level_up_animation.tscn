@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://d3or55y1uesbo"]
+
+[ext_resource type="Script" path="res://label.gd" id="1_ai74m"]
+
+[sub_resource type="Curve" id="Curve_oxt3h"]
+_data = [Vector2(0.511236, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.197802), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_fisjm"]
+offsets = PackedFloat32Array(0, 0.266667, 0.533333, 0.813333, 1)
+colors = PackedColorArray(0.703125, 0.252621, 0.0961304, 1, 0.753906, 0.274977, 0.108963, 1, 1, 0.891479, 0.0078125, 1, 0.992188, 0.848314, 0, 0.827, 0.961, 1, 0.289, 0)
+
+[node name="Level Up Animation" type="Node2D"]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 1000
+lifetime = 0.7
+one_shot = true
+emission_shape = 1
+emission_sphere_radius = 22.98
+spread = 180.0
+gravity = Vector2(0, -600)
+initial_velocity_min = 40.4
+initial_velocity_max = 121.21
+radial_accel_min = -63.64
+radial_accel_max = 100.0
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_oxt3h")
+color = Color(0.890625, 0.577651, 0.038269, 1)
+color_ramp = SubResource("Gradient_fisjm")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = -34.0
+offset_top = -119.0
+offset_right = 35.0
+offset_bottom = -96.0
+text = "Level up!"
+horizontal_alignment = 1
+script = ExtResource("1_ai74m")
+
+[node name="Level Up Text Timer" type="Timer" parent="."]
+wait_time = 1.642

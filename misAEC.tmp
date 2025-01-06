@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://dx4kb276ff6is"]
+
+[ext_resource type="Script" path="res://missle.gd" id="1_5vmlc"]
+[ext_resource type="Texture2D" uid="uid://o7tgqrisaswr" path="res://icon.svg" id="1_jyid5"]
+[ext_resource type="PackedScene" uid="uid://ne8nfi6ec2yk" path="res://hit_box.tscn" id="3_4do2c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u8vld"]
+size = Vector2(10, 10)
+
+[node name="Missle" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_5vmlc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(-1.19209e-07, 0)
+scale = Vector2(0.078125, 0.078125)
+texture = ExtResource("1_jyid5")
+
+[node name="MissleCooldown" type="Timer" parent="."]
+
+[node name="HitBox" parent="." instance=ExtResource("3_4do2c")]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+shape = SubResource("RectangleShape2D_u8vld")
+
+[connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
+
+[editable path="HitBox"]
