@@ -1,9 +1,9 @@
 extends Node2D
 
-@export var damage = 1
-@export var missle_speed = 600
-@export var range = 500
-@export var missle_amount = 1
+@export var current_damage = 1
+@export var current_missle_speed = 600
+@export var current_range = 500
+@export var current_missle_amount = 1
 
 var missle_scene = preload("res://scenes/missle.tscn")
 
@@ -16,10 +16,10 @@ func _process(_delta):
 	pass
 
 func increase_damage(bonus_damage):
-	self.damage += bonus_damage
+	self.current_damage += bonus_damage
 	
 func increase_missle_speed(missle_speed_bonus):
-	self.missle_speed += missle_speed_bonus
+	self.current_missle_speed += missle_speed_bonus
 	
 func get_closest_enemy():
 	var closest_enemy = null
@@ -34,8 +34,8 @@ func get_closest_enemy():
 func _on_weapon_cooldown_timeout():
 	if get_tree().get_node_count_in_group("Enemy") > 0:
 		var enemy = get_closest_enemy()
-		if get_parent().position.distance_to(enemy.position) < range:
-			for i in missle_amount:
-				var missle = Missle.new_missle(enemy, damage, missle_speed)
+		if get_parent().position.distance_to(enemy.position) < current_range:
+			for i in current_missle_amount:
+				var missle = Missle.new_missle(enemy, current_damage, current_missle_speed)
 				get_tree().root.add_child(missle)
 				missle.position = self.global_position
