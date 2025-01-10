@@ -130,10 +130,10 @@ jobs:
           name: ${{ matrix.channel }}
           path: build/${{ matrix.channel }}
       - name: Butler push
-        uses: manleydev/butler-publish-itchio-action@master
+        uses: manleydev/butler-publish-itchio-action@latest
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_API_KEY }}
           CHANNEL: ${{ matrix.channel }}
-          ITCH_GAME: $ITCH_GAME_ID
-          ITCH_USER: $ITCH_USERNAME
+          ITCH_GAME: frogger
+          ITCH_USER: jbue
           PACKAGE: build/${{ matrix.channel }}
