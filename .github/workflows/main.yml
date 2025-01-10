@@ -99,7 +99,7 @@ jobs:
     steps:
       - name: Install rsync 📚
         run: |
-          sudo apt-get update && apt-get install -y rsync
+          sudo apt-get update && sudo apt-get install -y rsync
       - name: Deploy to GitHub Pages 🚀
         uses: JamesIves/github-pages-deploy-action@releases/v4
         with:
@@ -109,19 +109,20 @@ jobs:
   deploy-to-itch:
     name: Deploy to Itch
     runs-on: ubuntu-20.04
+    container: lfdev/butler:latest
     needs: [export-windows, export-linux, export-web]
     strategy:
       matrix:
-        channel: [windows, linux, web]
+        channel: [windows, linux, web]   
     steps:
-      - uses: actions/download-artifact@v4
+      - uses: LF/butler-login-action@v1
         with:
-          name: ${{ matrix.channel }}
-          path: build/${{ matrix.channel }}
-      - run: |
-          butler push build/web $ITCHIO_NAME:web-stable
-          butler push build/linux $ITCHIO_NAME:linux-stable
-          butler push build/windows $ITCHIO_NAME:windows-stable
+          credentials: ${{ secrets.BUTLER_API_KEY }}
+      - uses: LF/butler-push-action@v1
+        with:
+          path: /build/${{ matrix.channel }}
+          target: $ITCH_USERNAME/$ITCH_GAME_ID:${{ matrix.channel }}
+
 
       
       #- uses: KikimoraGames/itch-publish@v0.0.3
