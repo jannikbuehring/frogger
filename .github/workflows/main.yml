@@ -113,9 +113,9 @@ jobs:
     strategy:
       matrix:
         channel:
-          - webgl
+          - web
     steps:
-      - uses: actions/download-artifact@v2.0.8
+      - uses: actions/download-artifact@v4
         with:
           name: ${{ matrix.channel }}
           path: build/${{ matrix.channel }}
