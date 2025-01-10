@@ -130,7 +130,7 @@ jobs:
           name: ${{ matrix.channel }}
           path: build/${{ matrix.channel }}
       - name: Butler push
-        uses: manleydev/butler-publish-itchio-action@latest
+        uses: manleydev/butler-publish-itchio-action@v1.0.3
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_API_KEY }}
           CHANNEL: ${{ matrix.channel }}
