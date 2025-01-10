@@ -2,7 +2,7 @@ extends Node2D
 
 @export var current_damage = 1
 @export var current_missle_speed = 600
-@export var current_range = 500
+@export var current_range = 600
 @export var current_missle_amount = 1
 
 var missle_scene = preload("res://scenes/missle.tscn")
