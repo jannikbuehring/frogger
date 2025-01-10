@@ -97,6 +97,10 @@ jobs:
     runs-on: ubuntu-20.04
     needs: export-web
     steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: web
+          path: build/web
       - name: Install rsync 📚
         run: |
           sudo apt-get update && sudo apt-get install -y rsync
@@ -118,9 +122,13 @@ jobs:
       - uses: LF/butler-login-action@v1
         with:
           credentials: ${{ secrets.BUTLER_API_KEY }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: ${{ matrix.channel }}
+          path: build/${{ matrix.channel }}
       - uses: LF/butler-push-action@v1
         with:
-          path: /build/${{ matrix.channel }}
+          path: build/${{ matrix.channel }}
           target: $ITCH_USERNAME/$ITCH_GAME_ID:${{ matrix.channel }}
 
 
