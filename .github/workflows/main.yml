@@ -68,10 +68,6 @@ jobs:
   export-web:
     name: Web Export
     runs-on: ubuntu-20.04
-    strategy:
-      matrix:
-        channel:
-          - webgl
     container:
       image: barichello/godot-ci:4.3
     steps:
@@ -94,6 +90,13 @@ jobs:
         with:
           name: web
           path: build/web
+
+
+  deploy-to-gh-pages:
+    name: Deploy to GitHub Pages
+    runs-on: ubuntu-20.04
+    needs: export-web
+    steps:
       - name: Install rsync 📚
         run: |
           apt-get update && apt-get install -y rsync
@@ -103,4 +106,24 @@ jobs:
           branch: gh-pages # The branch the action should deploy to.
           folder: build/web # The folder the action should deploy.
 
-  
+  deploy-to-itch:
+    name: Deploy to Itch
+    runs-on: ubuntu-20.04
+    needs: export-web
+    strategy:
+      matrix:
+        channel:
+          - webgl
+    steps:
+      - uses: actions/download-artifact@v2.0.8
+        with:
+          name: ${{ matrix.channel }}
+          path: build/${{ matrix.channel }}
+      - uses: KikimoraGames/itch-publish@v0.0.3
+        with:
+          butlerApiKey: ${{ secrets.BUTLER_API_KEY }}
+          gameData: ./build/${{ matrix.template }}
+          itchUsername: ${{ env.ITCH_USERNAME }}
+          itchGameId: ${{ env.ITCH_GAME_ID }}
+          buildChannel: ${{ matrix.channel }}
+          buildNumber: ${{ needs.version.outputs.version_hash }}
