@@ -112,8 +112,7 @@ jobs:
     needs: export-web
     strategy:
       matrix:
-        channel:
-          - web
+        channel: [windows, linux, web]
     steps:
       - uses: actions/download-artifact@v4
         with:
@@ -122,7 +121,7 @@ jobs:
       - uses: KikimoraGames/itch-publish@v0.0.3
         with:
           butlerApiKey: ${{ secrets.BUTLER_API_KEY }}
-          gameData: ./build/${{ matrix.template }}
+          gameData: ./build/${{ matrix.channel }}
           itchUsername: ${{ env.ITCH_USERNAME }}
           itchGameId: ${{ env.ITCH_GAME_ID }}
           buildChannel: ${{ matrix.channel }}
